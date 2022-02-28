@@ -30,7 +30,7 @@ int main(void)
            << analyst.nbZonesOfColor(Color::Green)
            << ", "
            << analyst.nbPixelsOfColor(Color::Green)
-           << endl;
+           << endl; 
 
       auto end = chrono::system_clock::now();
 

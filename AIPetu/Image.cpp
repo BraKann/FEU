@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include "Image.h"
 
-/*
+
 void Image::writeSVG(const std::string& filename, int pixelSize) const
 {
   assert(pixelSize > 0);
@@ -51,4 +51,4 @@ void Image::writeSVG(const std::string& filename, int pixelSize) const
 
   file.close();
 }
-*/
+
