@@ -19,15 +19,15 @@ class Image {
 public:
   /// Creates a black rectangular image with w*h pixels
   /// w is the width of this image, h is its height
-  //Image(int w, int h);
+  Image(int w, int h);
 
   /// Destructor
-  //~Image();
+  ~Image();
 
   /// Copy constructor
-  //Image(const Image& img);
+  Image(const Image& img);
 
-  /// No assignment
+  /// No assignment ??
   Image& operator=(const Image& img) = delete;
 
   /// Returns the width of this
@@ -98,7 +98,9 @@ public:
 
 private:
 
-
+  int w;
+  int h;
+  int* tabM;
   
   /// Tests if (i,j) is the coordinates of some pixel of this
   bool isValidCoordinate(int i, int j) const;
