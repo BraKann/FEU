@@ -14,10 +14,44 @@
 
 
 Image::Image(int width, int height){
-     int w = width;
-     int h = height;
-     tabM = new int [w][h];
+     w = width;
+     h = height;
+     tabM = new Color[w*h];
 }
+
+Image::~Image(){
+     delete [] tabM;
+}
+
+int Image::width() const {
+     return w;
+}
+
+int Image::height() const {
+     return h;
+}
+
+int Image::size() const {
+     return h*w;
+}
+
+Color Image::getPixel(int i, int j) const {
+     if( (1 <= i <= height() ) && (1 <= j <= width() ) ){
+          return tabM[i*j];
+     }
+}
+
+void Image::setPixel(int i, int j, Color col){
+     for(i = 0; i <= height(); i++){
+          for(j = 0; j <= width(); j++){
+               col = Color::Black;
+               tabM[j-1*i] = col;
+          }
+     }
+}
+
+
+
 
 
 
