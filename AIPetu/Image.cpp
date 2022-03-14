@@ -12,12 +12,16 @@
 #include <stdexcept>
 #include "Image.h"
 
-void image(int w, int h){
 
-     tabM = new int[w*h];
-
-
+Image::Image(int width, int height){
+     int w = width;
+     int h = height;
+     tabM = new int [w][h];
 }
+
+
+
+
 
 void Image::writeSVG(const std::string& filename, int pixelSize) const
 {
