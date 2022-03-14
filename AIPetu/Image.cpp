@@ -12,6 +12,12 @@
 #include <stdexcept>
 #include "Image.h"
 
+void image(int w, int h){
+
+     tabM = new int[w*h];
+
+
+}
 
 Image::Image(int w, int h)
 {

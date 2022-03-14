@@ -27,7 +27,7 @@ public:
   /// Copy constructor
   Image(const Image& img);
 
-  /// No assignment
+  /// No assignment ??
   Image& operator=(const Image& img) = delete;
 
   /// Returns the width of this
@@ -100,7 +100,9 @@ private:
   //int w, h;
   int* tabM;
 
-
+  int w;
+  int h;
+  int* tabM;
   
   /// Tests if (i,j) is the coordinates of some pixel of this
   bool isValidCoordinate(int i, int j) const;
