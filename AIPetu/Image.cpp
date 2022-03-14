@@ -12,17 +12,49 @@
 #include <stdexcept>
 #include "Image.h"
 
-void image(int w, int h){
-
-     tabM = new int[w*h];
-
-
-}
-
 Image::Image(int w, int h)
 {
-     int* tabM = ne[w][h];
+     int width = w;
+     int height = h;
+     carre = new Color[width * height];
 }
+
+Image::~Image()
+{
+     delete [] carre;
+}
+
+int Image::width() const 
+{
+     return w;
+}
+
+int Image::height() const
+{
+     return h;
+}
+
+int Image::size() const 
+{
+     return h*w;
+}
+
+Color Image::getPixel(int i, int j) const
+{
+     if ((1 <= i <= height()) && (1 <= j <= width()))
+     {
+          return carre[i*j];
+     }
+}
+
+
+
+
+
+
+
+
+
 
 void Image::writeSVG(const std::string& filename, int pixelSize) const
 {

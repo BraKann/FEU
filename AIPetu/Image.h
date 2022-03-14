@@ -97,12 +97,8 @@ public:
   bool areConsecutivePixels(int i1, int j1, int i2, int j2);
 
 private:
-  //int w, h;
-  int* tabM;
-
-  int w;
-  int h;
-  int* tabM;
+  int w, h;
+  Color *carre;
   
   /// Tests if (i,j) is the coordinates of some pixel of this
   bool isValidCoordinate(int i, int j) const;
