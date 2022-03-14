@@ -13,6 +13,11 @@
 #include "Image.h"
 
 
+Image::Image(int w, int h)
+{
+     int* tabM = ne[w][h];
+}
+
 void Image::writeSVG(const std::string& filename, int pixelSize) const
 {
   assert(pixelSize > 0);

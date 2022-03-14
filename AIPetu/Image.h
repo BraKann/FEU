@@ -19,13 +19,13 @@ class Image {
 public:
   /// Creates a black rectangular image with w*h pixels
   /// w is the width of this image, h is its height
-  //Image(int w, int h);
+  Image(int w, int h);
 
   /// Destructor
-  //~Image();
+  ~Image();
 
   /// Copy constructor
-  //Image(const Image& img);
+  Image(const Image& img);
 
   /// No assignment
   Image& operator=(const Image& img) = delete;
@@ -97,6 +97,8 @@ public:
   bool areConsecutivePixels(int i1, int j1, int i2, int j2);
 
 private:
+  //int w, h;
+  int* tabM;
 
 
   
