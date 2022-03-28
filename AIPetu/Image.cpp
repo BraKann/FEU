@@ -114,9 +114,9 @@ Image readAIP(const std::string& filename)
           
           for(int j = 1 ; j <= std::stoi(widthFILE); j++)
           {
-               char cline = currentLine[j];
-               Color c = Color(std::stoi(cline));
-               img->setPixel(i,j,c);
+               char charLine = currentLine[j];
+               Color col = Color(std::stoi(charLine));
+               img->setPixel(i,j,col);
           }
      }
 
@@ -125,9 +125,18 @@ Image readAIP(const std::string& filename)
 
 
 bool Image::operator==(const Image& img) const{
+     for(){
 
+     }
 
-     return true;
+     for(){
+          
+     }
+
+     for(){
+
+          return true;
+     }
      
 }
 
