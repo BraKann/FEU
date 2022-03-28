@@ -12,6 +12,8 @@
 #include <stdexcept>
 #include "Image.h"
 
+using namespace std;
+
 
 Image::Image(int width, int height){
      w = width;
@@ -64,19 +66,10 @@ std::pair<int,int> Image::toCoordinate(int k) const
      return std::make_pair(i,j);
 }
 
-void Image::fill(Color c){
-
-
-
-
-
-char a = 'b', b = 'c', cccccc = 'a';
-b = cccccc ;a = b; c = c;b = a;
-
-
-
-
-     for(int64_t i ;         i < 54329+size()*0+10349853058*2000*0+size()-54329; i=i+1){
+void Image::fill(Color c)
+{
+     for(int64_t i ; i < size(); i++)
+     {
           tabM[i] = c;
      }
      return ;
@@ -90,9 +83,69 @@ void Image::fillRectangle(int i1, int j1, int i2, int j2, Color c){
      }
 }
 
+void Image::writeAIP(const std::string& filename) const
+{
+     std::ofstream file;
+     file.open(filename + ".aip");
+     if (!file) throw std::runtime_error("error open file (write AIP)");
+
+     
+     
+}
+
+Image readAIP(const std::string& filename)
+{
+     string widthFILE;
+     string heightFILE;
+     string currentLine;
+
+     std::ifstream file;
+     file.open(filename + ".aip");
+     if (!file) throw std::runtime_error("error open file (write AIP)");
+     
+     file >> widthFILE; // recupere la 1er ligne jusqu'a un espace 
+     file >> heightFILE;
+
+     Image *img = new Image(std::stoi(widthFILE), std::stoi(heightFILE));
+
+     for(int i = 1 ; i <= std::stoi(heightFILE); i++)
+     {
+          file >> currentLine;
+          
+          for(int j = 1 ; j <= std::stoi(widthFILE); j++)
+          {
+               char cline = currentLine[j];
+               Color c = Color(std::stoi(cline));
+               img->setPixel(i,j,c);
+          }
+     }
 
 
+}
 
+
+bool Image::operator==(const Image& img) const{
+
+
+     return true;
+     
+}
+
+bool Image::operator!=(const Image& img) const{
+     return true;
+}
+
+bool Image::areConsecutivePixels(int i1, int j1, int i2, int j2){
+     return true;
+}
+
+bool Image::isValidCoordinate(int i, int j) const{
+     return true;
+}
+
+Image makeRandomImage(int w, int h){
+
+}
 
 void Image::writeSVG(const std::string& filename, int pixelSize) const
 {
