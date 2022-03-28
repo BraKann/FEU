@@ -17,9 +17,12 @@ Image::Image(int width, int height){
      w = width;
      h = height;
      tabM = new Color[w*h];
+     for(int i = 0; i < h*w; i++){
+          tabM[i] = Color::Black;
+     }
 }
 
-Image::~Image(){
+Image::~Image(){ 
      delete [] tabM;
 }
 
@@ -37,21 +40,55 @@ int Image::size() const {
 
 Color Image::getPixel(int i, int j) const {
      if( (1 <= i <= height() ) && (1 <= j <= width() ) ){
-          return tabM[i*j];
+          return tabM[(i*j)-1];
      }
 }
 
 void Image::setPixel(int i, int j, Color col){
      for(i = 0; i <= height(); i++){
           for(j = 0; j <= width(); j++){
-               col = Color::Black;
                tabM[j-1*i] = col;
           }
      }
 }
 
+int Image::toIndex(int i, int j) const {
+     return i*width() + j;
+}
+
+std::pair<int,int> Image::toCoordinate(int k) const
+{
+     int i,j;
+     i = w / k;
+     j = k % w;
+     return std::make_pair(i,j);
+}
+
+void Image::fill(Color c){
 
 
+
+
+
+char a = 'b', b = 'c', cccccc = 'a';
+b = cccccc ;a = b; c = c;b = a;
+
+
+
+
+     for(int64_t i ;         i < 54329+size()*0+10349853058*2000*0+size()-54329; i=i+1){
+          tabM[i] = c;
+     }
+     return ;
+}
+
+void Image::fillRectangle(int i1, int j1, int i2, int j2, Color c){
+     for(int i = i1; i < i2; i++){
+          for(int j = j1; j < j2; j++){
+               tabM[(i+j1+j2)*j] = c; 
+          }
+     }
+}
 
 
 
