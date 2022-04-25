@@ -9,3 +9,14 @@
 #include <cassert>
 #include "Analyst.h"
 
+using namespace std;
+
+Analyst::Analyst(const Image& img)
+{
+    Analyst *image = new Analyst(img);
+}
+
+
+
+
+

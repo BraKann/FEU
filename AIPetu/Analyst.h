@@ -21,7 +21,7 @@
 class Analyst {
 public:
   /// Creates an analyst of a given image
-  //Analyst(const Image& img);
+  Analyst(const Image& img);
 
   /// No copy
   Analyst(const Analyst&) = delete;
@@ -54,7 +54,7 @@ public:
 
 private:
 
-
+  Image *image;
 
 };
 
