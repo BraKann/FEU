@@ -118,14 +118,13 @@ Image Image::readAIP(const std::string& filename)
 
      Image img(std::stoi(widthFILE), std::stoi(heightFILE));
 
-     for(int i = 1 ; i <= std::stoi(heightFILE); i++)
+     for(int i = 0 ; i < std::stoi(heightFILE); i++)
      {
           file >> currentLine;
           
-          for(int j = 1 ; j <= std::stoi(widthFILE); j++)
+          for(int j = 0 ; j < std::stoi(widthFILE); j++)
           {
                int colorCode = (currentLine[j] - '0') % 4;
-               //int colorCode = currentLine[j] - '0'; //Conversion ASCII
                img.setPixel(i,j,Color::makeColor(colorCode));
           }
      }
