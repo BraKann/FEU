@@ -11,21 +11,22 @@
 #include <sstream>
 #include <stdexcept>
 #include "Image.h"
+#include "Color.h"
 
-using namespace std;
+//using namespace std; //overkill
 
 
 Image::Image(int width, int height){
      w = width;
      h = height;
-     tabM = new Color[w*h];
+     tabCol = new Color[w*h];
      for(int i = 0; i < h*w; i++){
-          tabM[i] = Color::Black;
+          tabCol[i] = Color::Black;
      }
 }
 
 Image::~Image(){ 
-     delete [] tabM;
+     delete [] tabCol;
 }
 
 int Image::width() const {
@@ -41,28 +42,28 @@ int Image::size() const {
 }
 
 Color Image::getPixel(int i, int j) const {
-     if( (1 <= i <= height() ) && (1 <= j <= width() ) ){
-          return tabM[(i*j)-1];
-     }
+     assert( (1 <= i <= w ) && (1 <= j <= h ) );
+     return tabCol[((i-1) * w + j-1)];
+
 }
 
 void Image::setPixel(int i, int j, Color col){
-     for(i = 0; i <= height(); i++){
-          for(j = 0; j <= width(); j++){
-               tabM[j-1*i] = col;
+     for(i = 0; i <= h; i++){
+          for(j = 0; j <= w; j++){
+               tabCol[j-1*i] = col;
           }
      }
 }
 
 int Image::toIndex(int i, int j) const {
-     return i*width() + j;
+     return i*w + j;
 }
 
 std::pair<int,int> Image::toCoordinate(int k) const
 {
      int i,j;
-     i = w / k;
      j = k % w;
+     i = (k-j) / w;
      return std::make_pair(i,j);
 }
 
@@ -70,15 +71,15 @@ void Image::fill(Color c)
 {
      for(int64_t i ; i < size(); i++)
      {
-          tabM[i] = c;
+          tabCol[i] = c;
      }
-     return ;
+     
 }
 
 void Image::fillRectangle(int i1, int j1, int i2, int j2, Color c){
      for(int i = i1; i < i2; i++){
           for(int j = j1; j < j2; j++){
-               tabM[(i+j1+j2)*j] = c; 
+               tabCol[(i+j1+j2)*j] = c; 
           }
      }
 }
@@ -88,25 +89,34 @@ void Image::writeAIP(const std::string& filename) const
      std::ofstream file;
      file.open(filename + ".aip");
      if (!file) throw std::runtime_error("error open file (write AIP)");
+     
+     file << width();
+     file << " ";
+     file << height() << std::endl;
 
-     
-     
+     for(int i = 1; i < height(); i++){
+          for(int j = 1; j < width(); j++){
+               file << tabCol[toIndex(i,j)].toInt();
+          }
+          file << std::endl;
+     }
+     file.close();
 }
 
-Image readAIP(const std::string& filename)
+Image Image::readAIP(const std::string& filename)
 {
-     string widthFILE;
-     string heightFILE;
-     string currentLine;
+     std::string widthFILE;
+     std::string heightFILE;
+     std::string currentLine;
 
      std::ifstream file;
      file.open(filename + ".aip");
-     if (!file) throw std::runtime_error("error open file (write AIP)");
+     if (!file) throw std::runtime_error("error open file (read AIP)");
      
      file >> widthFILE; // recupere la 1er ligne jusqu'a un espace 
      file >> heightFILE;
 
-     Image *img = new Image(std::stoi(widthFILE), std::stoi(heightFILE));
+     Image img(std::stoi(widthFILE), std::stoi(heightFILE));
 
      for(int i = 1 ; i <= std::stoi(heightFILE); i++)
      {
@@ -114,46 +124,59 @@ Image readAIP(const std::string& filename)
           
           for(int j = 1 ; j <= std::stoi(widthFILE); j++)
           {
-               char charLine = currentLine[j];
-               Color col = Color(std::stoi(charLine));
-               img->setPixel(i,j,col);
+               int colorCode = currentLine[j] - '0'; //Conversion ASCII
+               img.setPixel(i,j,Color::makeColor(colorCode));
           }
      }
 
-
+     return img;
 }
 
+bool Image::operator==(const Image& img) const
+{    
+     bool isEqual = true;
 
-bool Image::operator==(const Image& img) const{
-     for(){
-
-     }
-
-     for(){
-          
-     }
-
-     for(){
-
-          return true;
-     }
-     
+     if(img.width() == width())
+          if(img.height() == height())
+               for(int i = 0; i < img.size() ; i++)
+               {    
+                    if(img.tabCol[i] != tabCol[i])
+                    isEqual = false;
+               }
+     return isEqual; 
 }
 
 bool Image::operator!=(const Image& img) const{
+     !operator==(img);
      return true;
 }
 
 bool Image::areConsecutivePixels(int i1, int j1, int i2, int j2){
-     return true;
+     assert(((1 <= i1 <= w ) && (1 <= j1 <= h )) && ((1 <= i2 <= w ) && (1 <= j2 <= h )));
+     //Droite,bas,gauche,haut
+     if( (i2 == i1+1 && j2 == j1) || (i2 == i1 && j2 == j1+1) || (i2 == i1-1 && j2 == j1) || (i2 == i1 && j2 == j1-1) )
+     {
+        return true;  
+     }
+
+     return 0;
+     
 }
 
 bool Image::isValidCoordinate(int i, int j) const{
-     return true;
+     if(1 <= i <= width() && 1 <= j <= height())
+     {
+       return true;   
+     }
+
+     return 0;
+     
 }
 
 Image makeRandomImage(int w, int h){
-
+     Image img(w,h);
+     //La remplir d'une couleur random ?
+     return img;
 }
 
 void Image::writeSVG(const std::string& filename, int pixelSize) const
@@ -194,4 +217,3 @@ void Image::writeSVG(const std::string& filename, int pixelSize) const
 
   file.close();
 }
-

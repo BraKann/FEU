@@ -10,13 +10,23 @@
 #include <ctime>
 #include <sstream>
 #include "FireSimulator.h"
+#include "Image.h"
+#include "Color.h"
 
 using namespace std;
 
 int main(void)
 {
   srand(time(nullptr));
-
+  Image img(10,15);
+  img.fill(Color::Red);
+  img.fillRectangle(1,1,5,5,Color::Green);
+  img.fillRectangle(2,4,3,6,Color::White);
+  img.writeSVG("test",5);
+  //img.writeAIP("test");
+  //img.readAIP("amazonie_0");
+  //img.writeSVG("test",5);
+  //img.~Image();
 
   return 0;
 }
