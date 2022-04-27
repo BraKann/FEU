@@ -19,14 +19,12 @@ int main(void)
 {
   srand(time(nullptr));
   Image img(10,15);
-  img.fill(Color::Red);
-  img.fillRectangle(1,1,5,5,Color::Green);
-  img.fillRectangle(2,4,3,6,Color::White);
-  img.writeSVG("test",5);
-  //img.writeAIP("test");
-  //img.readAIP("amazonie_0");
+  //img.fill(Color::Red);
+  //img.fillRectangle(1,1,5,5,Color::Green);
   //img.writeSVG("test",5);
-  //img.~Image();
+  //img.writeAIP("test");
+  img.readAIP("amazonie_0");
+  img.writeSVG("amazonie_0",1);
 
   return 0;
 }

@@ -48,7 +48,7 @@
 <rect width="5" height="5" x="25" y="20" fill="black" />
 <rect width="5" height="5" x="30" y="20" fill="black" />
 <rect width="5" height="5" x="35" y="20" fill="black" />
-<rect width="5" height="5" x="40" y="20" fill="white" />
+<rect width="5" height="5" x="40" y="20" fill="black" />
 <rect width="5" height="5" x="45" y="20" fill="black" />
 <rect width="5" height="5" x="0" y="25" fill="black" />
 <rect width="5" height="5" x="5" y="25" fill="black" />
@@ -60,7 +60,7 @@
 <rect width="5" height="5" x="35" y="25" fill="black" />
 <rect width="5" height="5" x="40" y="25" fill="black" />
 <rect width="5" height="5" x="45" y="25" fill="black" />
-<rect width="5" height="5" x="0" y="30" fill="white" />
+<rect width="5" height="5" x="0" y="30" fill="black" />
 <rect width="5" height="5" x="5" y="30" fill="black" />
 <rect width="5" height="5" x="10" y="30" fill="black" />
 <rect width="5" height="5" x="15" y="30" fill="black" />

@@ -124,7 +124,8 @@ Image Image::readAIP(const std::string& filename)
           
           for(int j = 1 ; j <= std::stoi(widthFILE); j++)
           {
-               int colorCode = currentLine[j] - '0'; //Conversion ASCII
+               int colorCode = (currentLine[j] - '0') % 4;
+               //int colorCode = currentLine[j] - '0'; //Conversion ASCII
                img.setPixel(i,j,Color::makeColor(colorCode));
           }
      }
