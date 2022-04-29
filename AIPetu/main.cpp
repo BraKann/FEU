@@ -18,17 +18,27 @@ using namespace std;
 int main(void)
 {
   srand(time(nullptr));
-  /*
-  Image img(10,15);
-  //img.fill(Color::Red);
-  //img.fillRectangle(1,1,5,5,Color::Green);
-  //img.writeSVG("test",5);
-  //img.writeAIP("test");
-  img.readAIP("amazonie_0");
-  img.writeSVG("amazonie_0",1);
-  */
 
-  Image img(Image::readAIP("amazonie_0"));
+  Color col = Color::Red;
+
+  Image img(50,30);
+
+  //img.setPixel(3,2,col);
+
+  //img.fillRectangle(1,1,2,2,Color::Blue);
+
+  //img.writeSVG("test1",1);
+  //img.writeAIP("test1");
+
+  Image image(Image::readAIP("amazonie_0"));
+
+  image.writeSVG("test2",3);
+  
+
+  //Image image(Image::readAIP("amazonie_0"));
+
+  //image.writeSVG("amazonie0",50);
+  
 
   return 0;
 }

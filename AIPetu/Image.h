@@ -100,7 +100,7 @@ private:
 
   int w;
   int h;
-  Color* tabCol;
+  Color* tabPixel;
   
   /// Tests if (i,j) is the coordinates of some pixel of this
   bool isValidCoordinate(int i, int j) const;
